@@ -17,6 +17,7 @@ public class DAO<E> {
 		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("banco_mysql");
 		} catch (Exception e) {
+			System.out.println("Error ao conectar ao banco de dados :(");
 		}
 	}
 	
@@ -34,7 +35,7 @@ public class DAO<E> {
 		return this;
 	}
 
-	public DAO<E> fecharT() {
+	public DAO<E> comitarTransacao() {
 		entityManager.getTransaction().commit();
 		return this;
 	}
@@ -44,8 +45,8 @@ public class DAO<E> {
 		return this;
 	}
 	
-	public DAO<E> incluirAtomico(E entidade) {
-		return this.abrirTransacao().incluir(entidade).fecharT();
+	public DAO<E> incluirAtomico(E entidade) { // Incluir atomico
+		return this.abrirTransacao().incluir(entidade).comitarTransacao();
 	}
 	
 	public List<E> obterTodos() {
@@ -64,7 +65,16 @@ public class DAO<E> {
 		query.setFirstResult(deslocamento);
 		
 		return query.getResultList();
-		
+	}
+	
+	// Named Query
+	public List<E> consulta(String nomeConsulta) {
+		TypedQuery<E> query = entityManager.createNamedQuery(nomeConsulta, classe);
+		return query.getResultList();
+	}
+	
+	public void fechar() {
+		entityManager.close();
 	}
 
 }

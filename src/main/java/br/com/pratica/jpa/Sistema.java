@@ -1,5 +1,7 @@
 package br.com.pratica.jpa;
 
+import java.util.List;
+
 import br.com.pratica.jpa.dao.DAO;
 import br.com.pratica.jpa.models.Cliente;
 import br.com.pratica.jpa.models.Endereco;
@@ -23,10 +25,23 @@ public class Sistema {
 		Endereco endereco5 = new Endereco("58905-156", cliente5);
 		Endereco endereco6 = new Endereco("34861-568", cliente6);
 		Endereco endereco7 = new Endereco("54806-584", cliente7);
+		
+//		DAO dao = new DAO();
+//		DAO<Cliente> clienteDAO = new DAO<>(Cliente.class);
+//		DAO<Endereco> enderecoDAO = new DAO<>(Endereco.class);
 
-		DAO<Cliente> dao = new DAO<>(Cliente.class);
-
-		dao.abrirTransacao().incluir(cliente).fecharT();
+//		dao.abrirTransacao().incluir(cliente4).incluir(endereco4).comitarTransacao();
+		
+//		clienteDAO.abrirTransacao().incluir(cliente).fecharT();
+//		enderecoDAO.abrirTransacao().incluir(endereco).fecharT();
+		
+		DAO<Cliente> clienteDAO = new DAO<>(Cliente.class);
+		clienteDAO.abrirTransacao().incluir(cliente).comitarTransacao();
+		List<Cliente> clietnes = clienteDAO.consulta("obterTodosClientes");
+		
+		for (Cliente cliente8 : clietnes) {
+			System.out.println("NOME: " + cliente.getNome());
+		}
 
 	}
 

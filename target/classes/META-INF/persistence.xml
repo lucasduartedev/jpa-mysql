@@ -8,6 +8,8 @@
 		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
+		<mapping-file>META-INF/consultas.xml</mapping-file>
+		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/practice?serverTimezone=UTC" />
