@@ -4,9 +4,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
 	
+	<!-- CLIENTES -->
 	<named-query name="obterTodosClientes">
 		<query>
 			SELECT c FROM Cliente c
+		</query>
+	</named-query>
+	<named-query name="testUm">
+		<query>
+			SELECT c FROM Cliente c
+			WHERE c.nome LIKE '%an%'
 		</query>
 	</named-query>
 	

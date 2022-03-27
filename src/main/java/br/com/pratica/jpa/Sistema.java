@@ -10,6 +10,17 @@ public class Sistema {
 
 	public static void main(String[] args) {
 
+		DAO<Cliente> clienteDAO = popularBancoDeDados();
+		
+		List<Cliente> clientes = clienteDAO.consulta("obterTodosClientes");
+		
+		for (Cliente c : clientes) {
+			System.out.println("ID: " + c.getId() + " | " + "NOME: " + c.getNome());
+		}
+
+	}
+
+	private static DAO<Cliente> popularBancoDeDados() {
 		Cliente cliente = new Cliente("Kelly", "56894");
 		Cliente cliente2 = new Cliente("Fernando", "95684");
 		Cliente cliente3 = new Cliente("Julia", "94515");
@@ -26,23 +37,17 @@ public class Sistema {
 		Endereco endereco6 = new Endereco("34861-568", cliente6);
 		Endereco endereco7 = new Endereco("54806-584", cliente7);
 		
-//		DAO dao = new DAO();
-//		DAO<Cliente> clienteDAO = new DAO<>(Cliente.class);
-//		DAO<Endereco> enderecoDAO = new DAO<>(Endereco.class);
-
-//		dao.abrirTransacao().incluir(cliente4).incluir(endereco4).comitarTransacao();
-		
-//		clienteDAO.abrirTransacao().incluir(cliente).fecharT();
-//		enderecoDAO.abrirTransacao().incluir(endereco).fecharT();
-		
 		DAO<Cliente> clienteDAO = new DAO<>(Cliente.class);
-		clienteDAO.abrirTransacao().incluir(cliente).comitarTransacao();
-		List<Cliente> clietnes = clienteDAO.consulta("obterTodosClientes");
-		
-		for (Cliente cliente8 : clietnes) {
-			System.out.println("NOME: " + cliente.getNome());
-		}
-
+		clienteDAO.abrirTransacao()
+			.incluir(cliente)
+			.incluir(cliente2)
+			.incluir(cliente3)
+			.incluir(cliente4)
+			.incluir(cliente5)
+			.incluir(cliente6)
+			.incluir(cliente7)
+			.comitarTransacao();
+		return clienteDAO;
 	}
 
 }
