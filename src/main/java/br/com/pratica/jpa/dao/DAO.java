@@ -21,6 +21,7 @@ public class DAO<E> {
 		}
 	}
 	
+	// Contrutores
 	public DAO() {
 		this(null);
 	}
@@ -30,6 +31,7 @@ public class DAO<E> {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
+	// Métodos especiais
 	public DAO<E> abrirTransacao() {
 		entityManager.getTransaction().begin();
 		return this;
@@ -50,15 +52,16 @@ public class DAO<E> {
 	}
 	
 	public List<E> obterTodos() {
-		return this.obterTodos(10, 0);
+		return this.obterTodos(50, 0);
 	}
 	
 	public List<E> obterTodos(int quantidade, int deslocamento) {
 		if(classe == null) {
+			System.out.println("PROBLEMA:" + classe);
 			throw new UnsupportedOperationException("Classe nula");
 		}
 		
-		String jpql = "SELECT e FROM " +classe.getName() + " e";
+		String jpql = "SELECT e FROM " + classe.getName().toString() + " e";
 		
 		TypedQuery<E> query = entityManager.createQuery(jpql, classe);
 		query.setMaxResults(quantidade);
@@ -67,7 +70,7 @@ public class DAO<E> {
 		return query.getResultList();
 	}
 	
-	// Named Query
+	// Named Query - chamado por arquivo .xml
 	public List<E> consulta(String nomeConsulta) {
 		TypedQuery<E> query = entityManager.createNamedQuery(nomeConsulta, classe);
 		return query.getResultList();
@@ -75,6 +78,32 @@ public class DAO<E> {
 	
 	public void fechar() {
 		entityManager.close();
+	}
+
+	
+	// Getters & Setters
+	public static EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		DAO.entityManagerFactory = entityManagerFactory;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	public Class<E> getClasse() {
+		return classe;
+	}
+
+	public void setClasse(Class<E> classe) {
+		this.classe = classe;
 	}
 
 }
