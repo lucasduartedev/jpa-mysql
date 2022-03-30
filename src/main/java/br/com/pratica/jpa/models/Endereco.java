@@ -22,7 +22,7 @@ public class Endereco {
 	private String cep;
 	
 	@OneToOne
-	@JoinColumn(name = "cliente_id", referencedColumnName = "id")
+	@JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
 	private Cliente cliente;
 	
 	// Contructors

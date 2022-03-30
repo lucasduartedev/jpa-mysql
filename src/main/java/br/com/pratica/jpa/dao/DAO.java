@@ -31,7 +31,7 @@ public class DAO<E> {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
-	// Métodos especiais
+	// Mï¿½todos especiais
 	public DAO<E> abrirTransacao() {
 		entityManager.getTransaction().begin();
 		return this;
