@@ -2,8 +2,11 @@ package br.com.pratica.jpa;
 
 import java.util.List;
 
+import br.com.pratica.jpa.dao.AlunoDAO;
 import br.com.pratica.jpa.dao.CarroDAO;
 import br.com.pratica.jpa.dao.ClienteDAO;
+import br.com.pratica.jpa.dao.CursoDAO;
+import br.com.pratica.jpa.dao.CursoRegistroDAO;
 import br.com.pratica.jpa.dao.DAO;
 import br.com.pratica.jpa.dao.EnderecoDAO;
 import br.com.pratica.jpa.models.Aluno;
@@ -30,7 +33,10 @@ public class Sistema {
 		
 		ClienteDAO clienteDAO = new ClienteDAO(Cliente.class);
 		EnderecoDAO enderecoDAO = new EnderecoDAO(Endereco.class);
-		CarroDAO carrosDAO = new CarroDAO(Carro.class);
+		CarroDAO carroDAO = new CarroDAO(Carro.class);
+		CursoDAO cursoDAO = new CursoDAO(Curso.class);
+		AlunoDAO alunoDAO = new AlunoDAO(Aluno.class);
+		CursoRegistroDAO cursoRegistroDAO = new CursoRegistroDAO();
 		
 		List<Cliente> clientes = clienteDAO.obterTodosClientes();
 		clienteDAO.fechar();
@@ -38,14 +44,26 @@ public class Sistema {
 		List<Endereco> enderecos = enderecoDAO.obterTodosEnderecos();
 		enderecoDAO.fechar();
 		
-		List<Carro> carros = carrosDAO.obterTodosCarros();
-		carrosDAO.fechar();
+		List<Carro> carros = carroDAO.obterTodosCarros();
+		carroDAO.fechar();
+		
+		List<Curso> cursos = cursoDAO.obterTodosCursos();
+		cursoDAO.fechar();
+		
+		List<Aluno> alunos = alunoDAO.obterTodosAlunos();
+		alunoDAO.fechar();
+		
+		List<CursoRegistro> cursoRegistros = cursoRegistroDAO.obterTodosRegistros();
+		cursoDAO.fechar();
 		
 		msg2();
 
-		System.out.println("NÂº DE CLIENTES: " + clientes.size());
-		System.out.println("NÂº DE ENDERECOS: " + enderecos.size());
-		System.out.println("NÂº DE CARROS: " + carros.size());
+		System.out.println("Nº DE CLIENTES: " + clientes.size());
+		System.out.println("Nº DE ENDERECOS: " + enderecos.size());
+		System.out.println("Nº DE CARROS: " + carros.size());
+		System.out.println("Nº DE CURSOS: " + cursos.size());
+		System.out.println("Nº DE ALUNOS: " + alunos.size());
+		System.out.println("Nº DE CURSOS-REGISTROS: " + cursoRegistros.size());
 		
 		msg2();
 		
