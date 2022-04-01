@@ -38,6 +38,8 @@ public class Sistema {
 		AlunoDAO alunoDAO = new AlunoDAO(Aluno.class);
 		CursoRegistroDAO cursoRegistroDAO = new CursoRegistroDAO();
 		
+		msg2();
+		
 		List<Cliente> clientes = clienteDAO.obterTodosClientes();
 		clienteDAO.fechar();
 		
@@ -70,6 +72,7 @@ public class Sistema {
 	}
 
 	private static void popularBancoDeDados() {
+		
 		Cliente cliente = new Cliente("Kelly", "56894");
 		Cliente cliente2 = new Cliente("Fernando", "95684");
 		Cliente cliente3 = new Cliente("Julia", "94515");
@@ -103,12 +106,12 @@ public class Sistema {
 		Curso curso2 = new Curso("Java");
 		Curso curso3 = new Curso("Javascript");
 
-		Aluno aluno = new Aluno("Gustavo", "156485");
-		Aluno aluno2 = new Aluno("Eliana", "289165");
-		Aluno aluno3 = new Aluno("Hellen", "954982");
-		Aluno aluno4 = new Aluno("Felipe", "614865");
-		Aluno aluno5 = new Aluno("Amanda", "486153");
-		Aluno aluno6 = new Aluno("Joao", "348168");
+		Aluno aluno = new Aluno("Gustavo", "156485", "123");
+		Aluno aluno2 = new Aluno("Eliana", "289165", "159");
+		Aluno aluno3 = new Aluno("Hellen", "954982", "156");
+		Aluno aluno4 = new Aluno("Felipe", "614865", "456");
+		Aluno aluno5 = new Aluno("Amanda", "486153", "756");
+		Aluno aluno6 = new Aluno("Joao", "348168", "654");
 
 		CursoRegistro cursoRegistro = new CursoRegistro(curso2, aluno);
 		CursoRegistro cursoRegistro2 = new CursoRegistro(curso3, aluno);

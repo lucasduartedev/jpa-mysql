@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,8 @@ public class Aluno {
     @Column(name = "nome", nullable = false)
     private String nome;
     
-    @Column(name = "cpf", unique = true)
-    private String cpf;
+    @Embedded
+    private AlunoDadosPessoal alunoDadosPessoal;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
     private List<CursoRegistro> cursosAtivos = new ArrayList<>();
@@ -34,9 +35,9 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(String nome, String cpf) {
+    public Aluno(String nome, String cpf, String rg) {
         this.nome = nome;
-        this.cpf = cpf;
+        this.alunoDadosPessoal = new AlunoDadosPessoal(cpf, rg);
     }
 
     // Getters & Setters
@@ -57,11 +58,19 @@ public class Aluno {
     }
 
     public String getCpf() {
-        return cpf;
+        return this.alunoDadosPessoal.getCpf();
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.alunoDadosPessoal.setCpf(cpf);
+    }
+    
+    public String getRg() {
+    	return this.alunoDadosPessoal.getRg();
+    }
+    
+    public void setRg(String rg) {
+    	this.alunoDadosPessoal.setRg(rg);
     }
 
     public List<CursoRegistro> getCursosAtivos() {
@@ -72,6 +81,12 @@ public class Aluno {
         this.cursosAtivos = cursosAtivos;
     }
 
-    
-    
+	public AlunoDadosPessoal getAlunoDadosPessoal() {
+		return alunoDadosPessoal;
+	}
+
+	public void setAlunoDadosPessoal(AlunoDadosPessoal alunoDadosPessoal) {
+		this.alunoDadosPessoal = alunoDadosPessoal;
+	}
+
 }
