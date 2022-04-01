@@ -1,11 +1,15 @@
 package br.com.pratica.jpa.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class AlunoDadosPessoal {
+public class AlunoDadosPessoal implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
 	
@@ -37,6 +41,10 @@ public class AlunoDadosPessoal {
 
 	public void setRg(String rg) {
 		this.rg = rg;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }
