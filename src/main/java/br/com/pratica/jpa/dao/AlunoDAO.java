@@ -17,9 +17,9 @@ public class AlunoDAO extends DAO<Aluno> {
 	}
 	
 	// Métodos especiais
-		private TypedQuery<Aluno> jpqlDefault(String jpql) {
+	private TypedQuery<Aluno> jpqlDefault(String jpql) {
 		TypedQuery<Aluno> query = this.getEntityManager()
-			.createQuery(jpql, Aluno.class);
+				.createQuery(jpql, Aluno.class);
 		return query;
 	}
 	

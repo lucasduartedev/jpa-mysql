@@ -17,9 +17,9 @@ public class CursoRegistroDAO extends DAO<CursoRegistro> {
 	}
 
 	// Métodos especiais
-		private TypedQuery<CursoRegistro> jpqlDefault(String jpql) {
+	private TypedQuery<CursoRegistro> jpqlDefault(String jpql) {
 		TypedQuery<CursoRegistro> query = this.getEntityManager()
-			.createQuery(jpql, CursoRegistro.class);
+				.createQuery(jpql, CursoRegistro.class);
 		return query;
 	}
 	

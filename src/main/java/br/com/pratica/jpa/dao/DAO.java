@@ -31,7 +31,7 @@ public class DAO<E> {
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
-	// Mï¿½todos especiais
+	// Métodos especiais
 	public DAO<E> abrirTransacao() {
 		entityManager.getTransaction().begin();
 		return this;
@@ -79,7 +79,6 @@ public class DAO<E> {
 	public void fechar() {
 		entityManager.close();
 	}
-
 	
 	// Getters & Setters
 	public static EntityManagerFactory getEntityManagerFactory() {

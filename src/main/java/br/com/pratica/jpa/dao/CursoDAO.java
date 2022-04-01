@@ -17,9 +17,9 @@ public class CursoDAO extends DAO<Curso> {
 	}
 	
 	// Métodos especiais
-		private TypedQuery<Curso> jpqlDefault(String jpql) {
+	private TypedQuery<Curso> jpqlDefault(String jpql) {
 		TypedQuery<Curso> query = this.getEntityManager()
-			.createQuery(jpql, Curso.class);
+				.createQuery(jpql, Curso.class);
 		return query;
 	}
 	
